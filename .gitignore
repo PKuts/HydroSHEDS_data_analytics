@@ -1,0 +1,7 @@
+# Ignore GRIB index files, tif, csv
+*.idx
+*.tif
+*.csv
+# Ignore all Parquet files in merged_era5data
+data/merged_era5data/*.parquet
+
