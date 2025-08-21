@@ -87,57 +87,36 @@ repo-root/
 ### 1) Create a virtual environment
 ```bash
 python3 -m venv .venv
-Linux/macOS
-
-bash
-Copy
-Edit
 source .venv/bin/activate
-Windows (PowerShell)
+```
 
-powershell
-Copy
-Edit
-.venv\Scripts\Activate.ps1
 2) Install libraries (Python 3.8–3.11)
-bash
-Copy
-Edit
+```bash
 pip install -U numpy pandas rasterio shapely matplotlib geopandas pyogrio whitebox scipy
+```
+
 Tips
 
 Prefer fast I/O in GeoPandas:
 Linux/macOS
 
-bash
-Copy
-Edit
 export GEOPANDAS_IO_ENGINE=pyogrio
-Windows (PowerShell)
-
-powershell
-Copy
-Edit
-$env:GEOPANDAS_IO_ENGINE="pyogrio"
 whitebox will auto-download the whitebox_tools binary on first use.
-
 scipy is optional but speeds up pour-point merging.
 
 3) Create data folders
-bash
-Copy
-Edit
+```bash
 mkdir -p data/HydroSHEDS/bt_out/{plots,csv}
+```
 4) Download HydroSHEDS rasters
 Download the Asia 3″ products and save them to:
 
-text
-Copy
-Edit
+```text
 data/HydroSHEDS/
 ├── as_dir_Bhutan_and_buffer.tif   # ESRI-D8 flow directions — https://www.hydrosheds.org/
 ├── as_acc_Bhutan_and_buffer.tif   # Flow accumulation (cells) — https://www.hydrosheds.org/
 └── as_dem_Bhutan_and_buffer.tif   # DEM (elevation) — https://www.hydrosheds.org/
+```
 Optional: If you have a Bhutan boundary GeoPackage (bhutan_boundary.gpkg, layer bhutan), the pipeline will compute inside/edge stats and an inside-only map. Otherwise, these steps are skipped automatically.
 
 5) Run the notebooks
@@ -152,18 +131,7 @@ Key outputs will be saved to data/HydroSHEDS/bt_out/ (see Repository structure a
 Troubleshooting
 If GeoPandas tries to use Fiona (and errors), force Pyogrio:
 
-Linux/macOS
-
-bash
-Copy
-Edit
 export GEOPANDAS_IO_ENGINE=pyogrio
-Windows (PowerShell)
-
-powershell
-Copy
-Edit
-$env:GEOPANDAS_IO_ENGINE="pyogrio"
 On Python 3.8, the notebooks already shim importlib_resources so whitebox works.
 
 Known Limits
@@ -176,9 +144,9 @@ Tunable parameters are listed in the notebooks (see the parameters table).
 
 Changing thresholds will change the number of pour points and basins.
 
-License
+## License
 Released under the MIT License — feel free to use, copy, modify, and distribute.
 
-Questions & Contributions
+## Questions & Contributions
 Got a fix or a cool idea? Pull requests are very welcome.
 Have questions? Open an issue or start a discussion.
