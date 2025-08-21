@@ -80,11 +80,10 @@ repo-root/
 │               └── bar_top20_areas.png
 ├── .gitignore
 └── README.md
-Setup & How to Run
-Create a virtual environment
-bash
-Copy
-Edit
+## Setup & How to Run
+
+### 1) Create a virtual environment
+```bash
 python3 -m venv .venv
 Linux/macOS
 
@@ -98,14 +97,58 @@ powershell
 Copy
 Edit
 .venv\Scripts\Activate.ps1
-Install libraries (Python 3.8–3.11)
+2) Install libraries (Python 3.8–3.11)
 bash
 Copy
 Edit
 pip install -U numpy pandas rasterio shapely matplotlib geopandas pyogrio whitebox scipy
-Tips:
+Tips
 
 Prefer fast I/O in GeoPandas:
+Linux/macOS
+
+bash
+Copy
+Edit
+export GEOPANDAS_IO_ENGINE=pyogrio
+Windows (PowerShell)
+
+powershell
+Copy
+Edit
+$env:GEOPANDAS_IO_ENGINE="pyogrio"
+whitebox will auto-download the whitebox_tools binary on first use.
+
+scipy is optional but speeds up pour-point merging.
+
+3) Create data folders
+bash
+Copy
+Edit
+mkdir -p data/HydroSHEDS/bt_out/{plots,csv}
+4) Download HydroSHEDS rasters
+Download the Asia 3″ products and save them to:
+
+text
+Copy
+Edit
+data/HydroSHEDS/
+├── as_dir_Bhutan_and_buffer.tif   # ESRI-D8 flow directions — https://www.hydrosheds.org/
+├── as_acc_Bhutan_and_buffer.tif   # Flow accumulation (cells) — https://www.hydrosheds.org/
+└── as_dem_Bhutan_and_buffer.tif   # DEM (elevation) — https://www.hydrosheds.org/
+Optional: If you have a Bhutan boundary GeoPackage (bhutan_boundary.gpkg, layer bhutan), the pipeline will compute inside/edge stats and an inside-only map. Otherwise, these steps are skipped automatically.
+
+5) Run the notebooks
+code/Catchments.ipynb — main pipeline (streams → confluences → pour points → watersheds → vectors/CSV/plots).
+
+code/HydroSHEDS.ipynb — ACC conversion & EDA.
+
+code/HydroSHEDS_DEM.ipynb — DEM conversion & EDA.
+
+Key outputs will be saved to data/HydroSHEDS/bt_out/ (see Repository structure above).
+
+Troubleshooting
+If GeoPandas tries to use Fiona (and errors), force Pyogrio:
 
 Linux/macOS
 
@@ -119,65 +162,21 @@ powershell
 Copy
 Edit
 $env:GEOPANDAS_IO_ENGINE="pyogrio"
-whitebox will automatically download the whitebox_tools binary on first use.
-
-scipy is optional but speeds up pour-point merging.
-
-Create data folder
-bash
-Copy
-Edit
-mkdir -p data/HydroSHEDS/
-Download HydroSHEDS rasters
-Download the Asia 3″ products and save them to the following paths:
-
-text
-Copy
-Edit
-data/HydroSHEDS/
-├── as_dir_Bhutan_and_buffer.tif
-├── as_acc_Bhutan_and_buffer.tif
-└── as_dem_Bhutan_and_buffer.tif
-Optional: If you have a Bhutan boundary GeoPackage (bhutan_boundary.gpkg, layer bhutan), the pipeline will compute inside/edge stats and an inside-only map. Otherwise, these steps will be skipped automatically.
-
-Run the notebooks
-code/Catchments.ipynb: The main pipeline (streams → confluences → pour points → watersheds → vectors/CSV/plots).
-
-code/HydroSHEDS.ipynb: ACC conversion and EDA.
-
-code/HydroSHEDS_DEM.ipynb: DEM conversion and EDA.
-
-Key outputs will be saved to the data/HydroSHEDS/bt_out/ directory, as listed above.
-
-Troubleshooting
-If GeoPandas encounters an error while trying to use Fiona, force it to use Pyogrio:
-
-Linux/macOS
-
-bash
-Copy
-Edit
-export GEOPANDAS_IO_ENGINE=pyogri
-Windows (PowerShell)
-
-powershell
-Copy
-Edit
-$env:GEOPANDAS_IO_ENGINE="pyogrio"
-On Python 3.8, the notebooks already include a shim for importlib_resources to ensure whitebox works correctly.
+On Python 3.8, the notebooks already shim importlib_resources so whitebox works.
 
 Known Limits
-The internal-confluence strategy emphasizes major junctions. Very small headwater basins may be filtered out by the ACC thresholds.
+The internal-confluence strategy emphasizes major junctions; very small headwater basins may be filtered out by the ACC thresholds.
 
-The HydroSHEDS (3″) resolution implies pixels of approximately 90 m. Pixel-based area approximations assume a near-equatorial cell size, so it's best to use equal-area reprojection for accurate polygon areas.
+HydroSHEDS 3″ (~90 m) resolution implies pixel areas vary with latitude; use equal-area reprojection for accurate polygon areas.
 
 Reproducibility
-The tunable parameters are listed in the notebooks (see the Parameters table above).
+Tunable parameters are listed in the notebooks (see the parameters table).
 
-If you change the thresholds, expect a different number of pour points and basins.
+Changing thresholds will change the number of pour points and basins.
 
 License
 Released under the MIT License — feel free to use, copy, modify, and distribute.
 
 Questions & Contributions
-Got a fix or a cool idea? Pull requests (PRs) are super welcome! Open an issue if you have questions, or start a discussion.
+Got a fix or a cool idea? Pull requests are very welcome.
+Have questions? Open an issue or start a discussion.
