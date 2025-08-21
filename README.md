@@ -29,7 +29,6 @@ This repository is part of an Omdena initiative on natural-hazard (flood/landsli
 2. **Internal confluence pour points** — for each stream cell, count upstream stream neighbors (ESRI-D8); cells with inflow ≥ 2 are candidates.  
 3. **Filter & merge pour points** — keep only candidates with **ACC ≥ 120,000** cells; merge candidates within **4 px (Chebyshev)** and keep the max-ACC representative.  
 4. **Catchment delineation** — derive local catchments per pour point and compute summary attributes (area, elevation stats, etc.).  
-5. **ML-ready outputs** — export features per catchment for downstream modeling.
 
 ---
 
