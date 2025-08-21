@@ -36,32 +36,34 @@ Export to Sheets
 Rule of Thumb: At a 3″ (~90 m) resolution, 1 cell is approximately equal to 0.0081 km². Therefore, 30,000 cells ≈ 243 km² and 120,000 cells ≈ 972 km² of contributing area.
 
 Repository Structure
+To ensure the structure is displayed correctly, I'm providing it as a code block. This is a reliable method that GitHub's Markdown always renders properly.
+
 repo-root/
 ├── code/
-│   ├── Catchments.ipynb                 # Main pipeline: streams -> pour points -> watersheds -> vectors/CSV/plots
-│   ├── HydroSHEDS.ipynb                 # ACC conversion & EDA
-│   └── HydroSHEDS_DEM.ipynb             # DEM conversion & EDA
+│   ├── Catchments.ipynb
+│   ├── HydroSHEDS.ipynb
+│   └── HydroSHEDS_DEM.ipynb
 ├── data/
 │   └── HydroSHEDS/
-│       ├── as_dir_Bhutan_and_buffer.tif   # ESRI-D8 flow directions (download)
-│       ├── as_acc_Bhutan_and_buffer.tif   # Flow accumulation (cells) (download)
-│       ├── as_dem_Bhutan_and_buffer.tif   # DEM (elevation) (download)
+│       ├── as_dir_Bhutan_and_buffer.tif
+│       ├── as_acc_Bhutan_and_buffer.tif
+│       ├── as_dem_Bhutan_and_buffer.tif
 │       └── bt_out/
-│           ├── streams.tif                       # Binary stream mask
-│           ├── pp_internal_confluences.tif       # Pour points (internal confluences), unique IDs
-│           ├── watersheds_internal.tif           # Watershed (basin) ID raster
-│           ├── watersheds_internal.{shp,dbf,shx,prj} # Basins vectorized to Shapefile
-│           ├── watersheds_internal.gpkg          # Basins vectorized to GeoPackage (layer: watersheds)
-│           ├── watersheds_internal_summary.csv   # Basic per-basin summary
-│           ├── watersheds_internal_enriched.csv  # Enriched per-basin table (area, centroid, etc.)
+│           ├── streams.tif
+│           ├── pp_internal_confluences.tif
+│           ├── watersheds_internal.tif
+│           ├── watersheds_internal.{shp,dbf,shx,prj}
+│           ├── watersheds_internal.gpkg
+│           ├── watersheds_internal_summary.csv
+│           ├── watersheds_internal_enriched.csv
 │           ├── csv/
-│           │   ├── dem_Bhutan_and_buffer.csv     # row,col,x,y,elev_m
-│           │   ├── dir_Bhutan_and_buffer.csv     # row,col,x,y,dir_code,dir_name
-│           │   └── acc_Bhutan_and_buffer.csv     # row,col,x,y,acc_cells
+│           │   ├── dem_Bhutan_and_buffer.csv
+│           │   ├── dir_Bhutan_and_buffer.csv
+│           │   └── acc_Bhutan_and_buffer.csv
 │           └── plots/
-│               ├── map_watersheds_full.png       # Map of all basins
-│               ├── hist_watershed_areas.png      # Area histogram
-│               └── bar_top20_areas.png           # Top-20 basin areas (bar)
+│               ├── map_watersheds_full.png
+│               ├── hist_watershed_areas.png
+│               └── bar_top20_areas.png
 ├── .gitignore
 └── README.md
 Setup & How to Run
@@ -70,10 +72,16 @@ Create a virtual environment
 Bash
 
 python3 -m venv .venv
-# Linux/macOS
+Linux/macOS
+
+Bash
+
 source .venv/bin/activate
-# Windows (PowerShell)
-# .venv\Scripts\Activate.ps1
+Windows (PowerShell)
+
+Bash
+
+.venv\Scripts\Activate.ps1
 Install libraries (Python 3.8–3.11)
 
 Bash
@@ -139,3 +147,4 @@ Released under the MIT License — feel free to use, copy, modify, and distribut
 
 Questions & Contributions
 Got a fix or a cool idea? Pull requests (PRs) are super welcome! Open an issue if you have questions, or start a discussion.
+
