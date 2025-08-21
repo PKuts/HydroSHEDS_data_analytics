@@ -47,41 +47,40 @@ This repository is part of an Omdena initiative on natural-hazard (flood/landsli
 
 ## Repository structure
 
-code/
-Catchments.ipynb # main pipeline: streams → pour points → watersheds → vectors/CSV/plots
-HydroSHEDS.ipynb # ACC conversion & EDA
-HydroSHEDS_DEM.ipynb # DEM conversion & EDA
-.gitignore
-README.md
-
-data/
-└─ HydroSHEDS/
-├─ as_dir_Bhutan_and_buffer.tif # ESRI-D8 flow directions — download from https://www.hydrosheds.org/
-├─ as_acc_Bhutan_and_buffer.tif # Flow accumulation (cells) — download from https://www.hydrosheds.org/
-├─ as_dem_Bhutan_and_buffer.tif # DEM (elevation) — download from https://www.hydrosheds.org/
-└─ bt_out/
-├─ streams.tif # Binary stream mask from ACC threshold
-├─ pp_internal_confluences.tif # Pour points (internal confluences), unique IDs
-├─ watersheds_internal.tif # Watershed (basin) ID raster
-├─ watersheds_internal.shp/.dbf/.shx/.prj … # Basins vectorized to Shapefile
-├─ watersheds_internal.gpkg # Basins vectorized to GeoPackage (layer: watersheds)
-├─ watersheds_internal_summary.csv # Basic per-basin summary
-├─ watersheds_internal_enriched.csv # Enriched per-basin table (area, centroid, etc.)
-├─ csv/ # Raster-to-CSV exports
-│ ├─ dem_Bhutan_and_buffer.csv # row,col,x,y,elev_m
-│ ├─ dir_Bhutan_and_buffer.csv # row,col,x,y,dir_code,dir_name
-│ └─ acc_Bhutan_and_buffer.csv # row,col,x,y,acc_cells
-└─ plots/
-├─ map_watersheds_full.png # Map of all basins
-├─ hist_watershed_areas.png # Histogram of basin areas
-└─ bar_top20_areas.png # Top-20 basin areas
+repo-root/
+├─ code/
+│  ├─ Catchments.ipynb             # main pipeline: streams → pour points → watersheds → vectors/CSV/plots
+│  ├─ HydroSHEDS.ipynb             # ACC conversion & EDA
+│  └─ HydroSHEDS_DEM.ipynb         # DEM conversion & EDA
+├─ data/
+│  └─ HydroSHEDS/
+│     ├─ as_dir_Bhutan_and_buffer.tif   # ESRI-D8 flow directions — download: https://www.hydrosheds.org/
+│     ├─ as_acc_Bhutan_and_buffer.tif   # Flow accumulation (cells) — download: https://www.hydrosheds.org/
+│     ├─ as_dem_Bhutan_and_buffer.tif   # DEM (elevation) — download: https://www.hydrosheds.org/
+│     └─ bt_out/
+│        ├─ streams.tif                          # binary stream mask
+│        ├─ pp_internal_confluences.tif         # pour points (internal confluences), unique IDs
+│        ├─ watersheds_internal.tif             # watershed (basin) ID raster
+│        ├─ watersheds_internal.{shp,dbf,shx,prj}  # basins vectorized to Shapefile
+│        ├─ watersheds_internal.gpkg            # basins vectorized to GeoPackage (layer: watersheds)
+│        ├─ watersheds_internal_summary.csv     # basic per-basin summary
+│        ├─ watersheds_internal_enriched.csv    # enriched per-basin table (area, centroid, etc.)
+│        ├─ csv/                                # raster-to-CSV exports
+│        │  ├─ dem_Bhutan_and_buffer.csv        # row,col,x,y,elev_m
+│        │  ├─ dir_Bhutan_and_buffer.csv        # row,col,x,y,dir_code,dir_name
+│        │  └─ acc_Bhutan_and_buffer.csv        # row,col,x,y,acc_cells
+│        └─ plots/
+│           ├─ map_watersheds_full.png          # map of all basins
+│           ├─ hist_watershed_areas.png         # area histogram
+│           └─ bar_top20_areas.png              # top-20 basin areas (bar)
+├─ .gitignore
+└─ README.md
 
 ---
 
 ## Setup & How to Run
 
-### 1) Create a virtual environment
-```bash
+1) Create a virtual environment
 python3 -m venv .venv
 # Linux/macOS
 source .venv/bin/activate
@@ -138,9 +137,9 @@ Reproducibility
 Tunable parameters are listed in the notebooks (see the Parameters table above).
 If you change thresholds, expect a different number of pour points and basins.
 
-License
+## License
 Released under the MIT License — feel free to use, copy, modify, and distribute.
 
-Questions & Contributions
+## Questions & Contributions
 Got a fix or a cool idea? PRs are super welcome!
 Open an issue if you have questions, or start a discussion.
