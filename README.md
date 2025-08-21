@@ -84,7 +84,7 @@ repo-root/
 
 ## Setup & How to Run
 
-### 1) Create a virtual environment
+1) Create a virtual environment
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
