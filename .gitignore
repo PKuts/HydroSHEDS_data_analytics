@@ -1,7 +1,98 @@
-# Ignore GRIB index files, tif, csv
-*.idx
-*.tif
-*.csv
-# Ignore all Parquet files in merged_era5data
-data/merged_era5data/*.parquet
+# --- Geospatial vector (Shapefile & friends)
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.qpj
+*.qix
+*.fix
+*.sbn
+*.sbx
 
+# MapInfo / others 
+*.map
+*.id
+*.mif
+*.mid
+
+# GeoPackage & SpatiaLite sidecars
+*.gpkg
+*.gpkg-wal
+*.gpkg-shm
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# KML/KMZ
+*.kml
+*.kmz
+
+# --- Raster & sidecars
+*.tif
+*.tiff
+*.tfw
+*.tfwx
+*.ovr
+*.aux
+*.aux.xml
+*.rrd
+*.vrt
+*.img
+*.ige
+*.ers
+*.ecw
+*.jp2
+*.bil
+*.bip
+*.bsq
+*.hdr
+*.grd
+*.adf
+
+# --- Meteorological / scientific
+*.grib
+*.grib2
+*.grb
+*.grb2
+*.idx
+*.nc
+*.nc4
+*.cdf
+*.hdf
+*.h5
+*.hdf5
+*.bag
+
+# --- Notebooks temp & Python build
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- Editors / OS cruft
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# --- IDE / tooling (за потреби)
+# .vscode/
+# .idea/
+
+# --- Archives (великі сирі дані)
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
