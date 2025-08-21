@@ -80,6 +80,8 @@ repo-root/
 │               └── bar_top20_areas.png
 ├── .gitignore
 └── README.md
+```
+
 ## Setup & How to Run
 
 ### 1) Create a virtual environment
