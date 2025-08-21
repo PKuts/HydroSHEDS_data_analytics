@@ -117,7 +117,7 @@ Key outputs will be saved to the data/HydroSHEDS/bt_out/ directory, as listed ab
 
 Troubleshooting
 If GeoPandas encounters an error while trying to use Fiona, force it to use Pyogrio:
-Р
+
 Linux/macOS: export GEOPANDAS_IO_ENGINE=pyogrio
 
 Windows (PowerShell): $env:GEOPANDAS_IO_ENGINE="pyogrio"
