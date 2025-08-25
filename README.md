@@ -16,7 +16,7 @@ This repository is part of an Omdena initiative focused on natural-hazard (flood
 
 - HydroSHEDS official products (3″ ≈ 90 m): DEM, DIR (ESRI-D8), ACC.
 - Original rasters were downloaded from HydroSHEDS and clipped to Bhutan + buffer.
-- Website: https://www.hydrosheds.org
+- Website: <https://www.hydrosheds.org>
 
 > ⚠️ Note: Large rasters and intermediate data are not stored in this repository. Use the specified paths and keep raw data out of Git.
 
@@ -84,13 +84,15 @@ repo-root/
 
 ## Setup & How to Run
 
-1) Create a virtual environment
+Create a virtual environment
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-2) Install libraries (Python 3.8–3.11)
+Install libraries (Python 3.8–3.11)
+
 ```bash
 pip install -U numpy pandas rasterio shapely matplotlib geopandas pyogrio whitebox scipy
 ```
@@ -98,17 +100,22 @@ pip install -U numpy pandas rasterio shapely matplotlib geopandas pyogrio whiteb
 Tips
 
 Prefer fast I/O in GeoPandas:
-Linux/macOS
 
+```bash
 export GEOPANDAS_IO_ENGINE=pyogrio
+```
+
 whitebox will auto-download the whitebox_tools binary on first use.
 scipy is optional but speeds up pour-point merging.
 
-3) Create data folders
+Create data folders
+
 ```bash
 mkdir -p data/HydroSHEDS/bt_out/{plots,csv}
 ```
-4) Download HydroSHEDS rasters
+
+Download HydroSHEDS rasters
+
 Download the Asia 3″ products and save them to:
 
 ```text
@@ -116,10 +123,11 @@ data/HydroSHEDS/
 ├── as_dir_Bhutan_and_buffer.tif   # ESRI-D8 flow directions — https://www.hydrosheds.org/
 ├── as_acc_Bhutan_and_buffer.tif   # Flow accumulation (cells) — https://www.hydrosheds.org/
 └── as_dem_Bhutan_and_buffer.tif   # DEM (elevation) — https://www.hydrosheds.org/
-```
+
+
 Optional: If you have a Bhutan boundary GeoPackage (bhutan_boundary.gpkg, layer bhutan), the pipeline will compute inside/edge stats and an inside-only map. Otherwise, these steps are skipped automatically.
 
-5) Run the notebooks
+Run the notebooks
 code/Catchments.ipynb — main pipeline (streams → confluences → pour points → watersheds → vectors/CSV/plots).
 
 code/HydroSHEDS.ipynb — ACC conversion & EDA.
